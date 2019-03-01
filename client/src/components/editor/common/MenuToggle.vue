@@ -19,7 +19,7 @@ export default {
   name: 'menu-toggle',
   props: {
     menuHeader: { type: String, default: '' },
-    startClosed: { type: Boolean, dafault: false },
+    startClosed: { type: Boolean, dafault: true },
     hidden: { type: Boolean, dafault: false }
   },
   data: function () {

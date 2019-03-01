@@ -6,6 +6,7 @@
           v-for="element in elements"
           :title="element.name"
           draggable="true"
+          @startClosed="true"
           @dragstart="e => dragstartHandler(e, element)"
           @click="e => addItemToStage(e, element)"
         >
@@ -21,6 +22,7 @@
           v-for="mdComp in mdComponents"
           :title="mdComp.name"
           draggable="true"
+          @startClosed="true"
           @dragstart="e => dragstartHandler(e, mdComp)"
           @click="e => addItemToStage(e, mdComp)"
         >
@@ -30,6 +32,20 @@
       </div>
     </menu-toggle>
 
+    <menu-toggle menuHeader="Quasar Framework">
+      <div class="el-menu">
+        <div class="el-menu__el" :key="qfComp.name"
+          v-for="qfComp in qfComponents"
+          :title="qfComp.name"
+          draggable="true"
+          @dragstart="e => dragstartHandler(e, qfComp)"
+          @click="e => addItemToStage(e, qfComp)"
+        >
+          <svgicon :icon="'system/elements/'+qfComp.iconName" width="24" height="24" color="rgba(0,0,0,.87)"></svgicon>
+          <span>{{qfComp.displayName || qfComp.name}}</span>
+        </div>
+      </div>
+    </menu-toggle>
     <!-- TODO: v-for components (community/personal) retrieved from GH? -->
     <!-- <menu-toggle menuHeader="Community Components" :startClosed="true">
       <div class="el-menu">
@@ -55,6 +71,7 @@ import { registerElement } from '@/store/types'
 
 import basicElements from '@/assets/BasicElements'
 import materialComponents from '@/assets/MaterialComponents'
+import quasarComponents from '@/assets/QuasarComponents'
 // import mockComponents from '@/assets/MockComponents'
 import MenuToggle from '@/components/editor/common/MenuToggle'
 
@@ -66,7 +83,8 @@ export default {
   data: function () {
     return {
       elements: basicElements,
-      mdComponents: materialComponents
+      mdComponents: materialComponents,
+      qfComponents: quasarComponents
       // components: mockComponents
     }
   },
